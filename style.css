@@ -1,0 +1,26 @@
+body {
+    background-color: #444;
+}
+
+.container {
+    width: 100%;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.current {
+    height: 200px;
+    border: 1px solid black;
+    display: flex;
+
+}
+
+.current div {
+    border: 1px solid black;
+    flex: 1;
+}
+
+.weekly-forecast {
+    height: 200px;
+    border: 1px solid black;
+}

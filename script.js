@@ -1,0 +1,1 @@
+fetch("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/98199?unitGroup=metric&key=JXW9255N8RZ8H7BTWSULKLMXF&contentType=json")
