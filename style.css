@@ -4,12 +4,14 @@ body {
 
 .container {
     width: 100%;
+    max-width: 700px;
     background-color: white;
     border: 1px solid black;
+    margin: 0 auto;
 }
 
 .current {
-    height: 200px;
+    height: 180px;
     border: 1px solid black;
     display: flex;
 
@@ -20,7 +22,29 @@ body {
     flex: 1;
 }
 
-.weekly-forecast {
-    height: 200px;
+.current-details {
+    text-align: right;
+}
+
+.hourly-forecast {
+    display: flex;
+    text-align: center;
+}
+
+.hourly {
     border: 1px solid black;
+    height: 100px;
+    flex: 1;
+}
+
+.weekly-forecast {
+    height: 100px;
+    border: 1px solid black;
+    display: flex;
+    text-align: center;
+}
+
+.weekly {
+    border: 1px solid black;
+    flex: 1;
 }
