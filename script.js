@@ -34,8 +34,8 @@ function returnDay(date) {
     return day
 }
 
-function denoteMeridien(x) {
-    if (x.getHours() > 12) {
+function denoteMeridiem(x) {
+    if (x >= 12) {
         return "PM"
     } else {
         return "AM"
@@ -43,11 +43,11 @@ function denoteMeridien(x) {
 }
 
 hourlyTimes.forEach((hour, index) => {
-    let currHour = returnHour(now) + index
+    let hourTxt = returnHour(now) + index
     if (index == 0) {
         hour.innerHTML = "Now"
     } else {
-        hour.innerHTML = (currHour > 12 ? currHour - 12 : currHour) + " " + denoteMeridien(now)
+        hour.innerHTML = `${(hourTxt > 12 ? hourTxt - 12 : hourTxt)} ${denoteMeridiem(hourTxt)}`
     }
 })
 

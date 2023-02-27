@@ -12,44 +12,114 @@
 <body>
     <div class="container">
         <div class="header">
-
-            <input type="text" name="user" placeholder="Search city or zip code:">
-
-            <button>Search</button>
-        </div>
-        <div class="current">
-            <div class="current-snapshot">
-                <h2>Now</h2>
-                <h3>Cloudy</h3>
-                <span id="curr-temp">72</span><img src="" id="curr-icon" />
-                <p>Feels like</p>
+            <div class="search-container">
+                <input id="search-input" type="text" name="user" placeholder="Search city or zip code:"
+                    onkeypress="searchEnter(event)">
+                <button id="search-btn">Search</button>
             </div>
-            <div class="current-details">
-                <h4>H: X L: X</h4>
-                <p>Precip:</p>
-                <p>Humidity:</p>
-                <p>Wind:</p>
+
+            <div class="switches">
+                <button id="f-btn" class="unitToggle" disabled>F</button>
+                <button id="c-btn" class="unitToggle">C</button>
+            </div>
+
+        </div>
+        <div>
+            <p id="location">
+                </hp </div>
+            <div class="current">
+                <div class="curr-image-container">
+                    <img id="curr-img" />
+                </div>
+                <div class="current-snapshot">
+                    <h2 id="curr-temp"></h2>
+                    <p id="conditions"></p>
+                </div>
+                <div class="current-details">
+                    <p id="feelslike"></p>
+                    <p id="minmax"></p>
+                    <p id="precip"></p>
+                    <p id="humidity"></p>
+                    <p id="wind">Wind:</p>
+                </div>
+            </div>
+            <div class="hourly-forecast">
+                <div class="hourly">
+                    <h4 class="hour"></h4>
+                    <img src="" />
+                    <p class="hourly-temp"></p>
+                </div>
+                <div class="hourly">
+                    <h4 class="hour"></h4>
+                    <img src="" />
+                    <p class="hourly-temp"></p>
+                </div>
+                <div class="hourly">
+                    <h4 class="hour"></h4>
+                    <img src="" />
+                    <p class="hourly-temp"></p>
+                </div>
+                <div class="hourly">
+                    <h4 class="hour"></h4>
+                    <img src="" />
+                    <p class="hourly-temp"></p>
+                </div>
+                <div class="hourly">
+                    <h4 class="hour"></h4>
+                    <img src="" />
+                    <p class="hourly-temp"></p>
+                </div>
+                <div class="hourly">
+                    <h4 class="hour"></h4>
+                    <img src="" />
+                    <p class="hourly-temp"></p>
+                </div>
+                <div class="hourly">
+                    <h4 class="hour"></h4>
+                    <img src="" />
+                    <p class="hourly-temp"></p>
+                </div>
+            </div>
+            <div class="weekly-forecast">
+                <div class="weekly">
+                    <h4 class="daySignifier"></h4>
+                    <img src="" class="forecast-icon" id="" />
+                    <p class="weekly-hilo"></p>
+                </div>
+                <div class="weekly">
+                    <h4 class="daySignifier"></h4>
+                    <img src="" class="forecast-icon" id="" />
+                    <p class="weekly-hilo"></p>
+                </div>
+                <div class="weekly">
+                    <h4 class="daySignifier"></h4>
+                    <img src="" class="forecast-icon" id="" />
+                    <p class="weekly-hilo"></p>
+                </div>
+                <div class="weekly">
+                    <h4 class="daySignifier"></h4>
+                    <img src="" class="forecast-icon" id="" />
+                    <p class="weekly-hilo"></p>
+                </div>
+                <div class="weekly">
+                    <h4 class="daySignifier"></h4>
+                    <img src="" class="forecast-icon" id="" />
+                    <p class="weekly-hilo"></p>
+                </div>
+                <div class="weekly">
+                    <h4 class="daySignifier"></h4>
+                    <img src="" class="forecast-icon" id="" />
+                    <p class="weekly-hilo"></p>
+                </div>
+                <div class="weekly">
+                    <h4 class="daySignifier"></h4>
+                    <img src="" class="forecast-icon" id="" />
+                    <p class="weekly-hilo"></p>
+                </div>
             </div>
         </div>
-        <div class="hourly-forecast">
-            <div id="hour-1" class="hourly">Now</div>
-            <div id="hour-2" class="hourly">TBC</div>
-            <div id="hour-3" class="hourly">TBC</div>
-            <div id="hour-4" class="hourly">TBC</div>
-            <div id="hour-5" class="hourly">TBC</div>
-            <div id="hour-6" class="hourly">TBC</div>
-            <div id="hour-7" class="hourly">TBC</div>
-        </div>
-        <div class="weekly-forecast">
-            <div id="weekly-1" class="weekly">TBC</div>
-            <div id="weekly-2" class="weekly">TBC</div>
-            <div id="weekly-3" class="weekly">TBC</div>
-            <div id="weekly-4" class="weekly">TBC</div>
-            <div id="weekly-5" class="weekly">TBC</div>
-            <div id="weekly-6" class="weekly">TBC</div>
-            <div id="weekly-7" class="weekly">TBC</div>
-        </div>
-    </div>
 </body>
+
+<script src="script.js"></script>
 
 </html>
