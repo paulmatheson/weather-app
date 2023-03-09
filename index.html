@@ -1,125 +1,108 @@
-<!DOCTYPE html>
-<html lang="en">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<body>
-    <div class="container">
-        <div class="header">
-            <div class="search-container">
-                <input id="search-input" type="text" name="user" placeholder="Search city or zip code:"
-                    onkeypress="searchEnter(event)">
-                <button id="search-btn">Search</button>
-            </div>
-
-            <div class="switches">
-                <button id="f-btn" class="unitToggle" disabled>F</button>
-                <button id="c-btn" class="unitToggle">C</button>
-            </div>
-
+<div class="container add-shadow">
+    <div class="header">
+        <div class="search-container">
+            <input id="search-input" type="text" name="user" placeholder="Search city or zip code:"
+                onkeypress="searchEnter(event)">
+            <button id="search-btn" class="button"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
-        <div>
-            <p id="location">
-                </hp </div>
-            <div class="current">
-                <div class="curr-image-container">
-                    <img id="curr-img" />
-                </div>
-                <div class="current-snapshot">
-                    <h2 id="curr-temp"></h2>
-                    <p id="conditions"></p>
-                </div>
-                <div class="current-details">
-                    <p id="feelslike"></p>
-                    <p id="minmax"></p>
-                    <p id="precip"></p>
-                    <p id="humidity"></p>
-                    <p id="wind">Wind:</p>
-                </div>
+
+        <div class="switches">
+            <button id="f-btn" class="unitToggle button" disabled>°F</button>
+            <button id="c-btn" class="unitToggle button">°C</button>
+        </div>
+
+    </div>
+    <div class="cp">
+        <p id="location">
+            </hp </div>
+        <div class="current cp">
+            <div id="curr-image-container">
+
             </div>
-            <div class="hourly-forecast">
-                <div class="hourly">
-                    <h4 class="hour"></h4>
-                    <img src="" />
-                    <p class="hourly-temp"></p>
-                </div>
-                <div class="hourly">
-                    <h4 class="hour"></h4>
-                    <img src="" />
-                    <p class="hourly-temp"></p>
-                </div>
-                <div class="hourly">
-                    <h4 class="hour"></h4>
-                    <img src="" />
-                    <p class="hourly-temp"></p>
-                </div>
-                <div class="hourly">
-                    <h4 class="hour"></h4>
-                    <img src="" />
-                    <p class="hourly-temp"></p>
-                </div>
-                <div class="hourly">
-                    <h4 class="hour"></h4>
-                    <img src="" />
-                    <p class="hourly-temp"></p>
-                </div>
-                <div class="hourly">
-                    <h4 class="hour"></h4>
-                    <img src="" />
-                    <p class="hourly-temp"></p>
-                </div>
-                <div class="hourly">
-                    <h4 class="hour"></h4>
-                    <img src="" />
-                    <p class="hourly-temp"></p>
-                </div>
+            <div class="current-snapshot">
+                <h2 id="curr-temp"></h2>
+                <p id="conditions"></p>
             </div>
-            <div class="weekly-forecast">
-                <div class="weekly">
-                    <h4 class="daySignifier"></h4>
-                    <img src="" class="forecast-icon" id="" />
-                    <p class="weekly-hilo"></p>
-                </div>
-                <div class="weekly">
-                    <h4 class="daySignifier"></h4>
-                    <img src="" class="forecast-icon" id="" />
-                    <p class="weekly-hilo"></p>
-                </div>
-                <div class="weekly">
-                    <h4 class="daySignifier"></h4>
-                    <img src="" class="forecast-icon" id="" />
-                    <p class="weekly-hilo"></p>
-                </div>
-                <div class="weekly">
-                    <h4 class="daySignifier"></h4>
-                    <img src="" class="forecast-icon" id="" />
-                    <p class="weekly-hilo"></p>
-                </div>
-                <div class="weekly">
-                    <h4 class="daySignifier"></h4>
-                    <img src="" class="forecast-icon" id="" />
-                    <p class="weekly-hilo"></p>
-                </div>
-                <div class="weekly">
-                    <h4 class="daySignifier"></h4>
-                    <img src="" class="forecast-icon" id="" />
-                    <p class="weekly-hilo"></p>
-                </div>
-                <div class="weekly">
-                    <h4 class="daySignifier"></h4>
-                    <img src="" class="forecast-icon" id="" />
-                    <p class="weekly-hilo"></p>
-                </div>
+            <div class="current-details">
+                <p id="feelslike"></p>
+                <p id="minmax"></p>
+                <p id="precip"></p>
+                <p id="humidity"></p>
+                <p id="wind"></p>
             </div>
         </div>
-</body>
-
-<script src="script.js"></script>
-
-</html>
+        <canvas id="myChart" aria-label="Hourly Temperatures" role="img"></canvas>
+        <div class="hourly-forecast cp">
+            <div class="hourly">
+                <p class="hourly-temp"></p>
+                <p class="hour text-secondary"></p>
+            </div>
+            <div class="hourly">
+                <p class="hourly-temp"></p>
+                <p class="hour text-secondary"></p>
+            </div>
+            <div class="hourly">
+                <p class="hourly-temp"></p>
+                <p class="hour text-secondary"></p>
+            </div>
+            <div class="hourly">
+                <p class="hourly-temp"></p>
+                <p class="hour text-secondary"></p>
+            </div>
+            <div class="hourly">
+                <p class="hourly-temp"></p>
+                <p class="hour text-secondary"></p>
+            </div>
+            <div class="hourly">
+                <p class="hourly-temp"></p>
+                <p class="hour text-secondary"></p>
+            </div>
+            <div class="hourly">
+                <p class="hourly-temp"></p>
+                <p class="hour text-secondary"></p>
+            </div>
+        </div>
+        <div class="weekly-forecast cp">
+            <div class="weekly">
+                <h4 class="daySignifier"></h4>
+                <span class="forecast-icon"></span>
+                <p class="weekly-hilo"></p>
+            </div>
+            <div class="weekly">
+                <h4 class="daySignifier"></h4>
+                <span class="forecast-icon"></span>
+                <p class="weekly-hilo"></p>
+            </div>
+            <div class="weekly">
+                <h4 class="daySignifier"></h4>
+                <span class="forecast-icon"></span>
+                <p class="weekly-hilo"></p>
+            </div>
+            <div class="weekly">
+                <h4 class="daySignifier"></h4>
+                <span class="forecast-icon"></span>
+                <p class="weekly-hilo"></p>
+            </div>
+            <div class="weekly">
+                <h4 class="daySignifier"></h4>
+                <span class="forecast-icon"></span>
+                <p class="weekly-hilo"></p>
+            </div>
+            <div class="weekly">
+                <h4 class="daySignifier"></h4>
+                <span class="forecast-icon"></span>
+                <p class="weekly-hilo"></p>
+            </div>
+            <div class="weekly">
+                <h4 class="daySignifier"></h4>
+                <span class="forecast-icon"></span>
+                <p class="weekly-hilo"></p>
+            </div>
+        </div>
+    </div>

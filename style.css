@@ -1,9 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap');
 
 body {
-    background-color: #444;
+    background-color: #fff;
     font-family: "arial", sans-serif;
+    font-size: 0.9em;
     color: #202124;
+    transition: all 0.3s ease-in-out;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
@@ -11,13 +15,14 @@ body {
     max-width: 700px;
     background-color: white;
     margin: 0 auto;
-    border-radius: 10px;
-    padding: 2em;
+    border-radius: 25px;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
+    border-bottom: 1px solid #d3d3d3;
+    padding: 2em;
 }
 
 .current {
@@ -26,8 +31,15 @@ body {
     grid-template-columns: 100px auto 1fr;
 }
 
+.current i {
+    font-size: 5em;
+}
+
 .current-snapshot {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
 }
 
 .current-snapshot p {
@@ -35,19 +47,15 @@ body {
 }
 
 #curr-temp {
-    font-size: 4em;
+    font-size: 4.5em;
     margin: 0;
+    font-weight: 500;
 }
 
-.curr-image-container {
+#curr-image-container {
     display: flex;
     align-items: center;
-}
-
-.curr-image-container img {
-    height: 100px;
-    width: 100px;
-    background-color: #333;
+    justify-content: center;
 }
 
 .current-details {
@@ -78,6 +86,10 @@ body {
     flex: 1;
 }
 
+.hour {
+    font-size: 0.8em;
+}
+
 .weekly-forecast {
     display: flex;
     text-align: center;
@@ -94,8 +106,138 @@ body {
     gap: 0.4em;
 }
 
-
+.weekly i {
+    font-size: 2em;
+    padding: 0 0 0.2em 0;
+    color: hsl(235, 30%, 44%, 50%);
+}
 
 .text-secondary {
     color: #70757a;
+}
+
+.add-shadow {
+    box-shadow: 0px 10px 24px 0px rgba(62, 66, 66, 0.09),
+        rgba(0, 0, 0, 0.05) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+button {
+    cursor: pointer;
+}
+
+.button {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.4s;
+    /* Safari */
+}
+
+.button:hover {
+    transition-duration: 0.1s;
+}
+
+.button:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 4em;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.5s;
+    box-shadow: 0 0 10px 20px #A7A9C8;
+}
+
+.button:active:after {
+    box-shadow: 0 0 0 0 white;
+    position: absolute;
+    border-radius: 4em;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    transition: 0s;
+}
+
+.button:active {
+    top: 1px;
+}
+
+.unitToggle:disabled {
+    padding: 0.5rem 0.5rem;
+    border: none;
+    border-bottom: 2px solid hsl(234, 100%, 64%);
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+    color: #202124;
+}
+
+.unitToggle {
+    padding: 0.5rem 0.5rem;
+    margin: 0 0.5em;
+    border: none;
+    background-color: hsl(255, 10%, 74%, 0);
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+    color: #70757a;
+}
+
+.search-container {
+    flex: 2;
+}
+
+input[type=text] {
+    padding: 0.5em 1.4em;
+    width: 60%;
+    border-radius: 15px;
+    border: 2px solid #C6C3C3;
+    transition: all 0.3s ease-in-out;
+}
+
+input[type=text]:hover {
+    box-shadow: 0px 10px 24px 0px rgba(62, 66, 66, 0.09),
+        rgba(0, 0, 0, 0.05) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+#search-btn {
+    padding: 0.5rem 1.1rem;
+    border-radius: 20px;
+    border: none;
+    background-color: hsl(234, 100%, 64%);
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+}
+
+#search-btn:hover {
+    background-color: hsl(234, 100%, 54%);
+    transform: translateY(-5%);
+    cursor: pointer;
+}
+
+.unitToggle:hover {
+    transform: translateY(-7%);
+    cursor: pointer;
+}
+
+.unitToggle:disabled:hover {
+    cursor: default;
+    transform: none;
+    background-color: hsl(234, 100%, 64%, 0);
+}
+
+.cp {
+    padding: 0.7em 2em;
+}
+
+canvas {
+    padding: 0 2em;
+    height: 8em;
 }
