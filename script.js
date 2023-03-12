@@ -4,6 +4,7 @@ const hour = now.getHours() % 12 || 12; // convert to 12-hour clock
 const minute = now.getMinutes().toString().padStart(2, '0'); // ensure two digits
 const ampm = now.toLocaleTimeString('en-US', { hour12: true }).slice(-2); // extract last two characters
 
+
 let hourlyTemps = document.querySelectorAll("p.hourly-temp")
 let weeklyDays = document.querySelectorAll("h4.daySignifier")
 
@@ -23,19 +24,19 @@ let loc = "Seattle"
 let unit = "us"
 
 async function start() {
+    console.log(loc)
 
     const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${loc}?unitGroup=${unit}&key=${'PQ9YJKTMGSX5K8C2LRH3A6T7F'}&contentType=json`)
     const data = await response.json()
+    updateWeeklyForecast(data.days)
     updateCurrentWeather(data.currentConditions, data)
     updateDayConditions(data.days)
-    updateWeeklyForecast(data.days)
-    //console.log(data.days[1])
     updateHourlyTemps(data)
 }
 
 // define function that updates 
 function updateCurrentWeather(current, data) {
-    //console.log(current.icon)
+
     document.getElementById("location").innerHTML = `<span class="text-secondary">Results for</span><strong> ${data.resolvedAddress} | ${returnDay(now.getDay())} ${hour}:${minute} ${ampm}</strong>`
     document.getElementById("conditions").innerHTML = current.conditions
     document.getElementById("curr-temp").innerHTML = `${Math.round(current.temp)}°`
@@ -48,14 +49,14 @@ function updateCurrentWeather(current, data) {
             labels: hourlyTimes,
             datasets: [{
                 label: '# of Votes',
-                data: [44, 39, 42, 45, 49, 46, 44],
+                data: [12, 19, 3, 5, 2, 3],
                 borderWidth: 1
             }]
         },
         options: {
             scales: {
                 y: {
-                    beginAtZero: false
+                    beginAtZero: true
                 }
             }
         }
@@ -64,11 +65,10 @@ function updateCurrentWeather(current, data) {
 
 }
 
-
+start()
 
 function returnIcon(data) {
     let icon = "Text"
-    console.log(data.icon)
 
     switch (data.icon) {
         case "partly-cloudy-day":
@@ -104,16 +104,17 @@ function updateDayConditions(data) {
 }
 
 function updateWeeklyForecast(data) {
+    //Update daily forecast icons
     document.querySelectorAll("span.forecast-icon").forEach((day, index) => {
         day.innerHTML = returnIcon(data[index])
     })
 
+    //Update daily forecast numbers
     document.querySelectorAll("p.weekly-hilo").forEach((day, index) => {
+        console.log(data)
         day.innerHTML = `<span>${Math.round(data[0 + index].tempmax)}°</span> / <span class="text-secondary">${Math.round(data[0 + index].tempmin)}°</span>`
     })
 }
-
-start()
 
 fbtn.addEventListener("click", changeUnit)
 cbtn.addEventListener("click", changeUnit)
