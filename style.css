@@ -93,11 +93,16 @@ body {
 .weekly-forecast {
     display: flex;
     text-align: center;
+    gap: 8px;
 }
 
 .weekly {
     flex: 1;
+    border-radius: 10px;
+    background-color: #fff;
 }
+
+.w-active {}
 
 .weekly p {
     font-size: 0.9em;
@@ -112,6 +117,15 @@ body {
     color: hsl(235, 30%, 44%, 50%);
 }
 
+.weekly:hover {
+    background-color: hsl(255, 35%, 85%, .6);
+}
+
+.weekly:disabled {
+    cursor: default;
+    background-color: hsl(255, 10%, 90%, .7);
+}
+
 .text-secondary {
     color: #70757a;
 }
@@ -123,18 +137,17 @@ body {
 
 button {
     cursor: pointer;
+    transition-duration: 0.3s;
+    -webkit-transition-duration: 0.4s;
+    /* Safari */
+    border: none;
 }
 
 .button {
     position: relative;
-    cursor: pointer;
     user-select: none;
     text-align: center;
     text-decoration: none;
-    cursor: pointer;
-    transition-duration: 0.4s;
-    -webkit-transition-duration: 0.4s;
-    /* Safari */
 }
 
 .button:hover {
@@ -145,7 +158,7 @@ button {
     content: "";
     display: block;
     position: absolute;
-    border-radius: 4em;
+    border-radius: 15px;
     left: 0;
     top: 0;
     width: 100%;
@@ -158,7 +171,7 @@ button {
 .button:active:after {
     box-shadow: 0 0 0 0 white;
     position: absolute;
-    border-radius: 4em;
+    border-radius: 15px;
     left: 0;
     top: 0;
     opacity: 1;
@@ -234,9 +247,18 @@ input[type=text]:hover {
 }
 
 .cp {
-    padding: 0.7em 2em;
+    padding: 0.7em 2.5em;
 }
 
-canvas {
-    padding: 0 2em;
+.chart {
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    margin: 1em 0 2em 0;
+    width: 100%;
+}
+
+footer {
+    margin: 2em;
+    text-align: center;
 }

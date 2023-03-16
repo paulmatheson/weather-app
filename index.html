@@ -1,82 +1,97 @@
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!DOCTYPE html>
+<html lang="en">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 
-<div class="container add-shadow">
-    <div class="header">
-        <div class="search-container">
-            <input id="search-input" type="text" name="user" placeholder="Search city or zip code:"
-                onkeypress="searchEnter(event)">
-            <button id="search-btn" class="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <div class="container add-shadow">
+        <div class="header">
+            <div class="search-container">
+                <input id="search-input" type="text" name="user" placeholder="Search city or zip code:"
+                    onkeypress="searchEnter(event)">
+                <button id="search-btn" class="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+
+            <div class="switches">
+                <button id="f-btn" class="unitToggle button" disabled>°F</button>
+                <button id="c-btn" class="unitToggle button">°C</button>
+            </div>
+
         </div>
+        <div class="cp">
+            <p id="location"></p>
+            <div class="current cp">
+                <div id="curr-image-container">
+                </div>
+                <div class="current-snapshot">
+                    <h2 id="curr-temp"></h2>
+                    <p id="conditions"></p>
+                </div>
+                <div class="current-details">
+                    <p id="feelslike"></p>
+                    <p id="minmax"></p>
+                    <p id="precip"></p>
+                    <p id="humidity"></p>
+                    <p id="wind"></p>
+                </div>
+            </div>
+            <div class="chart"><canvas id="myChart" aria-label="Hourly Temperatures" role="img"></canvas></div>
+            <div class="weekly-forecast cp">
+                <button id="0" class="weekly" disabled>
+                    <h4 class="daySignifier"></h4>
+                    <span class="forecast-icon"></span>
+                    <p class="weekly-hilo"></p>
+                </button>
+                <button id="1" class="weekly button">
+                    <h4 class="daySignifier"></h4>
+                    <span class="forecast-icon"></span>
+                    <p class="weekly-hilo"></p>
+                </button>
+                <button id="2" class="weekly button">
+                    <h4 class="daySignifier"></h4>
+                    <span class="forecast-icon"></span>
+                    <p class="weekly-hilo"></p>
+                </button>
+                <button id="3" class="weekly button">
+                    <h4 class="daySignifier"></h4>
+                    <span class="forecast-icon"></span>
+                    <p class="weekly-hilo"></p>
+                </button>
+                <button id="4" class="weekly button">
+                    <h4 class="daySignifier"></h4>
+                    <span class="forecast-icon"></span>
+                    <p class="weekly-hilo"></p>
+                </button>
+                <button id="5" class="weekly button">
+                    <h4 class="daySignifier"></h4>
+                    <span class="forecast-icon"></span>
+                    <p class="weekly-hilo"></p>
+                </button>
 
-        <div class="switches">
-            <button id="f-btn" class="unitToggle button" disabled>°F</button>
-            <button id="c-btn" class="unitToggle button">°C</button>
+            </div>
         </div>
 
     </div>
-    <div class="cp">
-        <p id="location">
-            </hp </div>
-        <div class="current cp">
-            <div id="curr-image-container">
+    <footer>
+        Created by Paul Matheson | About this Project
+    </footer>
+</body>
 
-            </div>
-            <div class="current-snapshot">
-                <h2 id="curr-temp"></h2>
-                <p id="conditions"></p>
-            </div>
-            <div class="current-details">
-                <p id="feelslike"></p>
-                <p id="minmax"></p>
-                <p id="precip"></p>
-                <p id="humidity"></p>
-                <p id="wind"></p>
-            </div>
-        </div>
-        <div class="chart"><canvas id="myChart" aria-label="Hourly Temperatures" role="img"></canvas></div>
-        <div class="weekly-forecast cp">
-            <button id="0" class="weekly" disabled>
-                <h4 class="daySignifier"></h4>
-                <span class="forecast-icon"></span>
-                <p class="weekly-hilo"></p>
-            </button>
-            <button id="1" class="weekly button">
-                <h4 class="daySignifier"></h4>
-                <span class="forecast-icon"></span>
-                <p class="weekly-hilo"></p>
-            </button>
-            <button id="2" class="weekly button">
-                <h4 class="daySignifier"></h4>
-                <span class="forecast-icon"></span>
-                <p class="weekly-hilo"></p>
-            </button>
-            <button id="3" class="weekly button">
-                <h4 class="daySignifier"></h4>
-                <span class="forecast-icon"></span>
-                <p class="weekly-hilo"></p>
-            </button>
-            <button id="4" class="weekly button">
-                <h4 class="daySignifier"></h4>
-                <span class="forecast-icon"></span>
-                <p class="weekly-hilo"></p>
-            </button>
-            <button id="5" class="weekly button">
-                <h4 class="daySignifier"></h4>
-                <span class="forecast-icon"></span>
-                <p class="weekly-hilo"></p>
-            </button>
-            <button id="6" class="weekly button">
-                <h4 class="daySignifier"></h4>
-                <span class="forecast-icon"></span>
-                <p class="weekly-hilo"></p>
-            </button>
-        </div>
-    </div>
-    <div>
-        Test
-    </div>
-</div>
+</html>
