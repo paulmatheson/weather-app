@@ -19,7 +19,7 @@ const condTxt = document.getElementById("conditions")
 const cTmpTxt = document.getElementById("curr-temp")
 const flTxt = document.getElementById("feelslike")
 const currIcon = document.getElementById("curr-image-container")
-console.log(fbtn)
+fbtn.disabled = true;
 
 let chartInstance // declare a variable to hold the chart instance
 
@@ -167,9 +167,20 @@ function updateWeeklyForecast(data) {
 
     //Update daily forecast numbers
     document.querySelectorAll("p.weekly-hilo").forEach((day, index) => {
-
         day.innerHTML = `<span>${Math.round(data[0 + index].tempmax)}°</span> / <span class="text-secondary">${Math.round(data[0 + index].tempmin)}°</span>`
     })
+
+    if (dayNum == 0) {
+        weeklyBtns.forEach(btn => {
+            if (btn.id == 0) {
+                btn.disabled = true
+                btn.classList.remove("button")
+            } else {
+                btn.disabled = false;
+                btn.classList.add("button")
+            }
+        })
+    }
 }
 
 fbtn.addEventListener("click", changeUnit)
@@ -199,6 +210,7 @@ function searchEnter(event) {
 
 function changeLocation() {
     loc = searchInput.value
+    dayNum = 0
     start(dayNum, loc, unit)
     searchInput.value = ""
     hourlyTemps = []
