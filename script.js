@@ -19,6 +19,7 @@ const condTxt = document.getElementById("conditions")
 const cTmpTxt = document.getElementById("curr-temp")
 const flTxt = document.getElementById("feelslike")
 const currIcon = document.getElementById("curr-image-container")
+console.log(fbtn)
 
 let chartInstance // declare a variable to hold the chart instance
 
@@ -171,8 +172,6 @@ function updateWeeklyForecast(data) {
     })
 }
 
-
-
 fbtn.addEventListener("click", changeUnit)
 cbtn.addEventListener("click", changeUnit)
 searchbtn.addEventListener("click", changeLocation)
@@ -265,6 +264,14 @@ weeklyBtns.forEach(button => {
         // add disabled to transitionee
         // re-run the start() function with the changed times
     })
+})
+
+document.getElementById("trigger-popup").addEventListener("click", function () {
+    document.getElementById("pop").style.display = 'flex'
+})
+
+document.getElementById("popupCloseButton").addEventListener("click", function () {
+    document.getElementById("pop").style.display = 'none'
 })
 
 const ctx = document.getElementById('myChart');

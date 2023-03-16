@@ -6,8 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
@@ -15,12 +13,6 @@
 </head>
 
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
     <div class="container add-shadow">
         <div class="header">
             <div class="search-container">
@@ -90,8 +82,21 @@
 
     </div>
     <footer>
-        Created by Paul Matheson | About this Project
+        Created by Paul Matheson <span class="text-secondary">|</span> <a id="trigger-popup">About this
+            Project</a>
+
+        <div class="hover-bkgr" id="pop">
+            <div>
+                <div id="popupCloseButton">&times;</div>
+                <p>This project was developed using HTML, CSS, and vanilla JS and was created in order to
+                    refresh my understanding of APIs and interactive UI elements.</p>
+            </div>
+        </div>
     </footer>
+
+
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
 
 </html>
