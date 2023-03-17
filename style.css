@@ -344,6 +344,10 @@ footer {
         padding: 0;
     }
 
+    .unitToggle {
+        margin: 0;
+    }
+
     .header {
         display: flex;
         justify-content: space-between;
