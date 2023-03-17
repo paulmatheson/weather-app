@@ -102,8 +102,6 @@ body {
     background-color: #fff;
 }
 
-.w-active {}
-
 .weekly p {
     font-size: 0.9em;
     display: flex;
@@ -251,23 +249,14 @@ input[type=text]:hover {
 }
 
 .chart {
-    height: 250px;
     display: flex;
     justify-content: center;
     margin: 1em 0 2em 0;
-    width: 100%;
 }
 
 footer {
-    margin: 2em;
+    margin: 2em 0;
     text-align: center;
-}
-
-@media only screen and (min-width: 768px) {
-    .container {
-        margin-top: 3em;
-        transition: all 0.3s ease-in-out;
-    }
 }
 
 /* Popup box BEGIN */
@@ -336,3 +325,91 @@ footer {
 }
 
 /* Popup box BEGIN */
+
+@media only screen and (min-width: 768px) {
+    .container {
+        margin-top: 3em;
+        transition: all 0.3s ease-in-out;
+    }
+}
+
+@media (max-width: 767px) {
+    body {
+        background-color: #fff;
+        font-family: "arial", sans-serif;
+        font-size: 0.9em;
+        color: #202124;
+        transition: all 0.3s ease-in-out;
+        margin: 0;
+        padding: 0;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #d3d3d3;
+        padding: 1em;
+    }
+
+    .container {
+        border-radius: 0;
+        padding: 0 0 2em 0;
+    }
+
+    .cp {
+        padding: 0;
+    }
+
+    .current {
+        grid-template-columns: 1fr;
+        grid-gap: 1em;
+    }
+
+    .current-details {
+        grid-column: 1 / 3;
+        grid-row: 3;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .curr-image-container {
+        grid-column: 1;
+    }
+
+    .current i {
+        font-size: 4em;
+    }
+
+    .current-snapshot {
+        grid-row: 2;
+    }
+
+    #curr-temp {
+        font-size: 6em;
+    }
+
+    #location span {
+        display: none;
+    }
+
+    #location {
+        text-align: center;
+    }
+
+    #humidity {
+        display: none;
+    }
+
+    #wind {
+        display: none;
+    }
+
+    .chart {
+        padding: 0 2em;
+    }
+
+    .weekly-forecast {
+        margin: 1em 1em 1em 2em;
+        overflow: scroll;
+    }
+}
