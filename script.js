@@ -1,6 +1,3 @@
-require('dotenv').config();
-const apiKey = process.env.API_KEY;
-
 // Default variables
 let loc = "Seattle"
 let unit = "us"
