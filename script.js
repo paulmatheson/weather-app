@@ -1,3 +1,6 @@
+require('dotenv').config();
+const apiKey = process.env.API_KEY;
+
 // Default variables
 let loc = "Seattle"
 let unit = "us"
@@ -24,7 +27,7 @@ fbtn.disabled = true;
 let chartInstance // declare a variable to hold the chart instance
 
 async function start(dayNum, loc, unit) {
-    const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${loc}?unitGroup=${unit}&key=${'PQ9YJKTMGSX5K8C2LRH3A6T7F'}&contentType=json`)
+    const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${loc}?unitGroup=${unit}&key=${apiKey}&contentType=json`)
     const data = await response.json()
 
     // Location-dependant time
@@ -128,7 +131,7 @@ function returnIcon(data) {
 
     switch (data.icon) {
         case "partly-cloudy-day":
-            icon = '<i class="fa-solid fa-cloud-sun"></i>';
+            icon = '<img src="icons/partly-cloudy.png" />';
             return icon;
         case "rain":
             icon = '<i class="fa-solid fa-cloud-rain"></i>';
