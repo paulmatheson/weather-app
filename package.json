@@ -4,7 +4,7 @@
   "description": "This is a Weather forecast application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index"
   },
   "keywords": [
     "Weather App"
@@ -16,6 +16,6 @@
     "express": "^4.18.2"
   },
   "devDependencies": {
-    "netlify-cli": "^13.1.6"
+    "netlify-cli": "^2.12.0"
   }
 }
