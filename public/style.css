@@ -12,7 +12,7 @@ body {
 
 .container {
     width: 100%;
-    max-width: 700px;
+    max-width: 625px;
     background-color: white;
     margin: 0 auto;
     border-radius: 25px;
@@ -328,7 +328,7 @@ footer {
 
 @media only screen and (min-width: 768px) {
     .container {
-        margin-top: 3em;
+        margin-top: 2em;
         transition: all 0.3s ease-in-out;
     }
 }

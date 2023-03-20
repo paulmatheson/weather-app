@@ -7,6 +7,7 @@ let dayNum = 0
 let weeklyDays = document.querySelectorAll("h4.daySignifier")
 let hourlyTimes = [1, 2, 3, 4, 5, 6, 7, 8]
 let dayTxt = ''
+let apiKey = "sdf"
 
 // Document variables
 const weeklyBtns = document.querySelectorAll("button.weekly")
@@ -24,11 +25,12 @@ fbtn.disabled = true;
 let chartInstance // declare a variable to hold the chart instance
 
 async function start(dayNum, loc, unit) {
-    const response = await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${loc}?unitGroup=${unit}&key=${apiKey}&contentType=json`)
-    const data = await response.json()
+
+    const api_url = `weather/${loc},${unit}`
+    const response = await fetch(api_url)
+    data = await response.json()
 
     // Location-dependant time
-    //console.log(data)
     const currentTime = new Date().toLocaleString("en-US", { timeZone: data.timezone })
     now = new Date(currentTime) // alter to adjust by day somehow
     day = now.getDate(dayNum)
@@ -128,7 +130,7 @@ function returnIcon(data) {
 
     switch (data.icon) {
         case "partly-cloudy-day":
-            icon = '<img src="icons/partly-cloudy.png" />';
+            icon = '<i class="fa-solid fa-cloud-sun"></i>';
             return icon;
         case "rain":
             icon = '<i class="fa-solid fa-cloud-rain"></i>';
