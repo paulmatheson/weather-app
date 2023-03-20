@@ -1,5 +1,3 @@
-// Client-side code will send the location and metric
-// So eventually this will be where the API call exists and from here... I will send that back to the client as a JSON file
 require('dotenv').config()
 
 api_key = process.env.API_KEY
@@ -11,7 +9,7 @@ app.use(express.static('public'))
 app.use(express.json({ limit: '1mb' }))
 
 app.get('/weather/:locinfo', async (request, response) => {
-    //console.log(params)
+
     const params = request.params.locinfo.split(',')
     const loc = params[0]
     const unit = params[1]
