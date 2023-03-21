@@ -1,5 +1,5 @@
 require('dotenv').config()
-//const fetch = require('node-fetch')
+
 const express = require('express')
 
 api_key = process.env.API_KEY
