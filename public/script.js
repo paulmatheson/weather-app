@@ -25,85 +25,88 @@ fbtn.disabled = true;
 let chartInstance // declare a variable to hold the chart instance
 
 async function start(dayNum, loc, unit) {
+    try {
+        const api_url = `/weather/${loc},${unit}`
+        const response = await fetch(api_url)
+        data = await response.json()
 
-    const api_url = `weather/${loc},${unit}`
-    const response = await fetch(api_url)
-    data = await response.json()
+        // Location-dependant time
+        const currentTime = new Date().toLocaleString("en-US", { timeZone: data.timezone })
+        now = new Date(currentTime) // alter to adjust by day somehow
+        day = now.getDate(dayNum)
+        //console.log(day)
+        hour = now.getHours() % 12 || 12; // convert to 12-hour clock
+        minute = now.getMinutes().toString().padStart(2, '0'); // ensure two digits
+        ampm = now.toLocaleTimeString('en-US', { hour12: true }).slice(-2); // extract last two characters
 
-    // Location-dependant time
-    const currentTime = new Date().toLocaleString("en-US", { timeZone: data.timezone })
-    now = new Date(currentTime) // alter to adjust by day somehow
-    day = now.getDate(dayNum)
-    //console.log(day)
-    hour = now.getHours() % 12 || 12; // convert to 12-hour clock
-    minute = now.getMinutes().toString().padStart(2, '0'); // ensure two digits
-    ampm = now.toLocaleTimeString('en-US', { hour12: true }).slice(-2); // extract last two characters
+        // Holds the variables that will be the charts x-axis
+        hourlyTimes = hourlyTimes.map((x, index) => {
+            x = now.getHours() + index > 24 ? now.getHours() + index - 24 : now.getHours() + index
+            x = `${x > 12 ? x - 12 : x} ${denoteMeridiem(x)}`
+            return x;
+        })
 
-    // Holds the variables that will be the charts x-axis
-    hourlyTimes = hourlyTimes.map((x, index) => {
-        x = now.getHours() + index > 24 ? now.getHours() + index - 24 : now.getHours() + index
-        x = `${x > 12 ? x - 12 : x} ${denoteMeridiem(x)}`
-        return x;
-    })
-
-    // These are the temperatures at each hour
-    const hourlyTemps = [] // declare hourlyTemps as a local variable
-    for (let i = 0; i < 8; i++) {
-        currHour = now.getHours() + i >= 24 ? now.getHours() + i - 24 : now.getHours() + i
-        if (data.days[dayNum].hours[currHour]) {
-            hourlyTemps.push(data.days[dayNum].hours[currHour].temp)
-        } else {
-            hourlyTemps.push(data.days[dayNum].hours[currHour - 1].temp)
+        // These are the temperatures at each hour
+        const hourlyTemps = [] // declare hourlyTemps as a local variable
+        for (let i = 0; i < 8; i++) {
+            currHour = now.getHours() + i >= 24 ? now.getHours() + i - 24 : now.getHours() + i
+            if (data.days[dayNum].hours[currHour]) {
+                hourlyTemps.push(data.days[dayNum].hours[currHour].temp)
+            } else {
+                hourlyTemps.push(data.days[dayNum].hours[currHour - 1].temp)
+            }
         }
-    }
 
-    // Alter the printed day names in the weekly forecast
-    weeklyDays.forEach((day, index) => {
-        let printedDay = (now.getDay() + index) < 6 ? now.getDay() + index : now.getDay() + index - 6
-        day.innerHTML = returnDay(printedDay)
-    })
+        // Alter the printed day names in the weekly forecast
+        weeklyDays.forEach((day, index) => {
+            let printedDay = (now.getDay() + index) < 6 ? now.getDay() + index : now.getDay() + index - 6
+            day.innerHTML = returnDay(printedDay)
+        })
 
-    if (!chartInstance) { // check if chartInstance is undefined
-        chartInstance = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: hourlyTimes,
-                datasets: [{
-                    data: hourlyTemps,
-                    fill: true,
-                    borderColor: 'rgb(35, 122, 192)',
-                    tension: 0.1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        suggestedMin: Math.min(...hourlyTemps) - 1,
-                        suggestedMax: Math.max(...hourlyTemps) + 1,
-                        ticks: {
-                            stepSize: 2 // Set the spacing between tick marks to 5
+        if (!chartInstance) { // check if chartInstance is undefined
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: hourlyTimes,
+                    datasets: [{
+                        data: hourlyTemps,
+                        fill: true,
+                        borderColor: 'rgb(35, 122, 192)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            suggestedMin: Math.min(...hourlyTemps) - 1,
+                            suggestedMax: Math.max(...hourlyTemps) + 1,
+                            ticks: {
+                                stepSize: 2 // Set the spacing between tick marks to 5
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
                         }
                     }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    }
                 }
-            }
-        })
-    } else { // update chart data using the update() method
-        chartInstance.data.datasets[0].data = hourlyTemps
-        chartInstance.options.scales.y.suggestedMin = Math.min(...hourlyTemps) - 2
-        chartInstance.options.scales.y.suggestedMax = Math.max(...hourlyTemps) + 2
-        chartInstance.data.labels = hourlyTimes
-        chartInstance.update()
-    }
+            })
+        } else { // update chart data using the update() method
+            chartInstance.data.datasets[0].data = hourlyTemps
+            chartInstance.options.scales.y.suggestedMin = Math.min(...hourlyTemps) - 2
+            chartInstance.options.scales.y.suggestedMax = Math.max(...hourlyTemps) + 2
+            chartInstance.data.labels = hourlyTimes
+            chartInstance.update()
+        }
 
-    // Data that refreshes based on location, time and the chosen date from the weekly forecast
-    updateDayConditions(data.days, now)
-    updateCurrentWeather(data, now, dayNum)
-    updateWeeklyForecast(data.days, now)
+        // Data that refreshes based on location, time and the chosen date from the weekly forecast
+        updateDayConditions(data.days, now)
+        updateCurrentWeather(data, now, dayNum)
+        updateWeeklyForecast(data.days, now)
+    } catch (error) {
+        console.error(error)
+    }
 }
 
 // define function that updates the current weather

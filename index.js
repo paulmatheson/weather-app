@@ -11,7 +11,10 @@ app.listen(port, () => {
 app.use(express.static('public'));
 app.use(express.json({ limit: '1mb' }));
 
+console.log(api_key);
+
 app.get('/weather/:locinfo', async (request, response) => {
+    console.log(request.url);
 
     const params = request.params.locinfo.split(',')
     const loc = params[0]
