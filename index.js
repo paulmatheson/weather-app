@@ -1,12 +1,15 @@
 require('dotenv').config()
-
-api_key = process.env.API_KEY
+const fetch = require('node-fetch');
+const api_key = process.env.API_KEY;
 
 const express = require('express')
 const app = express()
-app.listen(3000, () => console.log('Listening at 3000'))
-app.use(express.static('public'))
-app.use(express.json({ limit: '1mb' }))
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Starting server at ${port}`);
+});
+app.use(express.static('public'));
+app.use(express.json({ limit: '1mb' }));
 
 app.get('/weather/:locinfo', async (request, response) => {
 
