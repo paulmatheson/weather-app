@@ -4,7 +4,8 @@
   "description": "This is a Weather forecast application",
   "main": "index.js",
   "scripts": {
-    "start": "node index"
+    "start": "node index",
+    "build": "echo 'Building the app...'"
   },
   "keywords": [
     "Weather App"
