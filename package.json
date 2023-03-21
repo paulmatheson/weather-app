@@ -4,7 +4,7 @@
   "description": "This is a Weather forecast application",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index"
   },
   "keywords": [
     "Weather App"
@@ -12,8 +12,10 @@
   "author": "Paul Matheson",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "needle": "^3.2.0",
     "node-fetch": "^3.3.1"
   },
   "devDependencies": {
