@@ -63,6 +63,11 @@ async function start(dayNum, loc, unit) {
             day.innerHTML = returnDay(printedDay)
         })
 
+        // Data that refreshes based on location, time and the chosen date from the weekly forecast
+        updateDayConditions(data.days, now)
+        updateCurrentWeather(data, now, dayNum)
+        updateWeeklyForecast(data.days, now)
+
         if (!chartInstance) { // check if chartInstance is undefined
             chartInstance = new Chart(ctx, {
                 type: 'line',
@@ -100,10 +105,7 @@ async function start(dayNum, loc, unit) {
             chartInstance.update()
         }
 
-        // Data that refreshes based on location, time and the chosen date from the weekly forecast
-        updateDayConditions(data.days, now)
-        updateCurrentWeather(data, now, dayNum)
-        updateWeeklyForecast(data.days, now)
+
     } catch (error) {
         console.error(error)
     }
