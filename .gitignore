@@ -3,3 +3,5 @@ script_test.js
 node_modules/
 # Local Netlify folder
 .netlify
+
+images
