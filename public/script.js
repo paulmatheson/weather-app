@@ -7,7 +7,6 @@ let dayNum = 0
 let weeklyDays = document.querySelectorAll("h4.daySignifier")
 let hourlyTimes = [1, 2, 3, 4, 5, 6, 7, 8]
 let dayTxt = ''
-let apiKey = "sdf"
 
 // Document variables
 const weeklyBtns = document.querySelectorAll("button.weekly")
