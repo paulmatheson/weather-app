@@ -25,7 +25,7 @@ let chartInstance // declare a variable to hold the chart instance
 
 async function start(dayNum, loc, unit) {
     try {
-        const api_url = `/weather/${loc},${unit}`
+        const api_url = `/.netlify/functions/weather/${loc},${unit}`
         const response = await fetch(api_url)
         data = await response.json()
 
