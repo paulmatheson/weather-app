@@ -333,7 +333,13 @@ footer {
     }
 }
 
-@media (max-width: 767px) {
+@media only screen and (max-width: 430px) {
+    .weekly-forecast {
+        overflow: scroll;
+    }
+}
+
+@media (max-width: 567px) {
     body {
         background-color: #fff;
         font-family: "arial", sans-serif;
