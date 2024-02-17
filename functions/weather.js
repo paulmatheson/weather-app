@@ -16,7 +16,10 @@ exports.handler = async function (event, context) {
         const loc = params[0];
         const unit = params[1];
 
-        // ... rest of your code ...
+        const api_url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${loc}?unitGroup=${unit}&key=${api_key}&contentType=json`;
+
+        const fetch_response = await fetch(api_url);
+        const json = await fetch_response.json();
 
         return {
             statusCode: 200,
