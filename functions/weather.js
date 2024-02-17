@@ -6,14 +6,17 @@ const api_key = process.env.API_KEY;
 
 exports.handler = async function (event, context) {
     try {
-        const params = event.queryStringParameters.locinfo.split(',');
+        const queryStringParameters = event.queryStringParameters;
+
+        if (!queryStringParameters || !queryStringParameters.locinfo) {
+            throw new Error('Invalid or missing locinfo parameter in the query string.');
+        }
+
+        const params = queryStringParameters.locinfo.split(',');
         const loc = params[0];
         const unit = params[1];
 
-        const api_url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${loc}?unitGroup=${unit}&key=${api_key}&contentType=json`;
-
-        const fetch_response = await fetch(api_url);
-        const json = await fetch_response.json();
+        // ... rest of your code ...
 
         return {
             statusCode: 200,
@@ -23,7 +26,7 @@ exports.handler = async function (event, context) {
         console.error(error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: 'Internal Server Error' }),
+            body: JSON.stringify({ error: error.message || 'Internal Server Error' }),
         };
     }
-}
+};
