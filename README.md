@@ -15,7 +15,7 @@ A simple weather application that provides current weather information using HTM
 
 ## Links
 
-- Live Site URL: [Link]([https://weather-app-pm.herokuapp.com/](https://weatherapp.paulmatheson.net/))
+- Live Site URL: [Link]([https://weather-app-pm.herokuapp.com/](https://weatherapp.paulmatheson.net/])
 
 ### License
 
